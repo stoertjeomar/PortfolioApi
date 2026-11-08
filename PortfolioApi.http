@@ -1,6 +1,11 @@
 @PortfolioApi_HostAddress = http://localhost:5068
 
-GET {{PortfolioApi_HostAddress}}/weatherforecast/
+GET {{PortfolioApi_HostAddress}}/api/Projecten
+Accept: application/json
+
+###
+
+GET {{PortfolioApi_HostAddress}}/api/Blogposts
 Accept: application/json
 
 ###
