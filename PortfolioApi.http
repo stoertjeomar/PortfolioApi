@@ -1,6 +1,6 @@
 @PortfolioApi_HostAddress = http://localhost:5068
 
-GET {{PortfolioApi_HostAddress}}/api/Projecten
+GET {{PortfolioApi_HostAddress}}/api/Projects
 Accept: application/json
 
 ###

@@ -17,8 +17,7 @@ builder.Services.AddScoped<ProjectService>();
 builder.Services.AddScoped<BlogpostService>();
 
 var app = builder.Build();
-
-// Middleware (na Build)
+//middleware na build
 if (app.Environment.IsDevelopment())
 {
     app.MapOpenApi();

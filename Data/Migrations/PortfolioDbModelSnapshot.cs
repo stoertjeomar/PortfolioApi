@@ -29,12 +29,12 @@ namespace PortfolioApi.Data.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<DateTime>("Datum")
-                        .HasColumnType("datetime2");
-
                     b.Property<string>("Inhoud")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("Publicatiedatum")
+                        .HasColumnType("datetime2");
 
                     b.Property<string>("Titel")
                         .IsRequired()
@@ -43,22 +43,6 @@ namespace PortfolioApi.Data.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Blogposts");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            Datum = new DateTime(2026, 11, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Inhoud = "In deze blogpost vertel ik hoe ik mijn eerste API heb gemaakt met ASP.NET Core.",
-                            Titel = "Mijn eerste Web API"
-                        },
-                        new
-                        {
-                            Id = 2,
-                            Datum = new DateTime(2026, 10, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Inhoud = "Voor mijn portfoliosite heb ik geleerd hoe je met JavaScript de DOM aanpast en data ophaalt met fetch.",
-                            Titel = "Wat ik heb geleerd over JavaScript"
-                        });
                 });
 
             modelBuilder.Entity("Project", b =>
@@ -73,20 +57,24 @@ namespace PortfolioApi.Data.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("Jaar")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Naam")
+                    b.Property<string>("Categorie")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Taal")
+                    b.Property<DateTime>("Datum")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("GitHubUrl")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Titel")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
-                    b.ToTable("Projecten");
+                    b.ToTable("Projects");
                 });
 #pragma warning restore 612, 618
         }

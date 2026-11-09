@@ -1,25 +1,26 @@
 using Microsoft.AspNetCore.Mvc;
 
+// Laag 3 (Presentation): ontvangt requests en kiest het HTTP-resultaat. De logica zit in ProjectService.
 [Route("api/[controller]")]
 [ApiController]
-public class ProjectenController : ControllerBase
+public class ProjectsController : ControllerBase
 {
     private readonly ProjectService _service;
 
-    public ProjectenController(ProjectService service)
+    public ProjectsController(ProjectService service)
     {
         _service = service;
     }
 
-    // GET: api/Projecten
+    // GET: api/Projects
     [HttpGet]
     public async Task<ActionResult<List<ProjectResponse>>> GetAll()
     {
-        var projecten = await _service.GetAll();
-        return Ok(projecten);
+        var projects = await _service.GetAll();
+        return Ok(projects);
     }
 
-    // GET: api/Projecten/5
+    // GET: api/Projects/5
     [HttpGet("{id}")]
     public async Task<ActionResult<ProjectResponse>> GetById(int id)
     {
@@ -31,17 +32,17 @@ public class ProjectenController : ControllerBase
         return Ok(project);
     }
 
-    // POST: api/Projecten
+    // POST: api/Projects
     [HttpPost]
-    public async Task<ActionResult<ProjectResponse>> Create(ProjectRequest request)
+    public async Task<ActionResult<ProjectResponse>> Create(CreateProjectRequest request)
     {
         var project = await _service.Create(request);
         return CreatedAtAction(nameof(GetById), new { id = project.Id }, project);
     }
 
-    // PUT: api/Projecten/5
+    // PUT: api/Projects/5
     [HttpPut("{id}")]
-    public async Task<IActionResult> Update(int id, ProjectRequest request)
+    public async Task<IActionResult> Update(int id, UpdateProjectRequest request)
     {
         var gelukt = await _service.Update(id, request);
         if (!gelukt)
@@ -51,7 +52,7 @@ public class ProjectenController : ControllerBase
         return NoContent();
     }
 
-    // DELETE: api/Projecten/5
+    // DELETE: api/Projects/5
     [HttpDelete("{id}")]
     public async Task<IActionResult> Delete(int id)
     {
