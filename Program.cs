@@ -13,6 +13,10 @@ builder.Services.AddDbContext<PortfolioDb>(options =>
 builder.Services.AddScoped<ProjectService>();
 builder.Services.AddScoped<BlogpostService>();
 
+builder.Services.AddIdentityApiEndpoints<User>().AddEntityFrameworkStores<PortfolioDb>();
+builder.Services.AddAuthentication();
+builder.Services.AddAuthorization();
+
 var app = builder.Build();
 if (app.Environment.IsDevelopment())
 {
@@ -23,6 +27,8 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 app.UseRouting();
+app.UseAuthentication();
+app.UseAuthorization();
 app.MapControllers();
 
 app.Run();
