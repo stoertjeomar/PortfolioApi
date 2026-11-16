@@ -28,7 +28,6 @@ public class ProjectService
 
     public async Task<ProjectResponse> Create(CreateProjectRequest request)
     {
-        // DTO -> entity
         var project = new Project
         {
             Titel = request.Titel,
@@ -51,7 +50,6 @@ public class ProjectService
             return false;
         }
 
-        // DTO -> entity
         project.Titel = request.Titel;
         project.Beschrijving = request.Beschrijving;
         project.Categorie = request.Categorie;
@@ -75,7 +73,7 @@ public class ProjectService
         return true;
     }
 
-    // Entity -> DTO: zet een Project om naar een ProjectResponse
+    
     private static ProjectResponse ToResponse(Project project)
     {
         return new ProjectResponse(project.Id, project.Titel, project.Beschrijving, project.Categorie, project.GitHubUrl, project.Datum);

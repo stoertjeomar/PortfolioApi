@@ -1,6 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
 
-// Laag 3 (Presentation): ontvangt requests en kiest het HTTP-resultaat. De logica zit in ProjectService.
 [Route("api/[controller]")]
 [ApiController]
 public class ProjectsController : ControllerBase
